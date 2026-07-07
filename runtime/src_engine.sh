@@ -15,7 +15,6 @@ SRC_UPDT_LOG="$SCRIPT_ROOT/data/src_root/src_update.txt"
 mkdir -p "$SCRIPT_ROOT/data/src_root/archives"
 touch "$HTML_SOURCE" "$OUTPUT_FILE" "$SRC_CMP_CHKSUM" "$ERR_DMP_FILE" "$SRC_UPDT_LOG"
 
-PY_VER=""
 OVER_WRITE_ARCHIVE=0
 MISS=0
 FAIL=0
