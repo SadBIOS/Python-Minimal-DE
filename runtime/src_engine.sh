@@ -12,7 +12,7 @@ SRC_CMP_CHKSUM="$SCRIPT_ROOT/data/src_root/src_chksum_sha512.txt"
 ERR_DMP_FILE="$SCRIPT_ROOT/data/src_root/check_fail.txt"
 SRC_UPDT_LOG="$SCRIPT_ROOT/data/src_root/src_update.txt"
 
-mkdir -p "$SCRIPT_ROOT/data/src_root/archives"
+mkdir -pv "$SCRIPT_ROOT/data/src_root/archives"
 touch "$HTML_SOURCE" "$OUTPUT_FILE" "$SRC_CMP_CHKSUM" "$ERR_DMP_FILE" "$SRC_UPDT_LOG"
 
 OVER_WRITE_ARCHIVE=0
