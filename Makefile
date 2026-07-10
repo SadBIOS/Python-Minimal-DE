@@ -1,5 +1,5 @@
 root := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-dependencies := $(root)dep_deb135.tar.gz
+dependencies := $(root)<dependency archive name>.tar.gz
 
 default:
 	@echo "$(dependencies)"
