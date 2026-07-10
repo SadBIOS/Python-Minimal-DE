@@ -11,7 +11,7 @@ while [[ $# -gt 0 ]]; do
             ;;
 
         --resolve-offline)
-            extractor "$2"
+            <function?> "$2"
             shift 2
             ;;
 
