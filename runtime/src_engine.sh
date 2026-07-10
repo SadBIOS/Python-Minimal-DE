@@ -128,7 +128,7 @@ function update_archive() {
 
     if [[ $updated_files -gt 0 ]]; then
         echo "Updates found. Rebuilding the entire checksum file..."
-        > "$SRC_CMP_CHKSUM"
+        truncate -s 0 "$SRC_CMP_CHKSUM"
 
         find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" -exec basename {} \; | \
             sort -V | \
@@ -167,7 +167,7 @@ function download_specific() {
         return
     }
 
-    > "$SRC_CMP_CHKSUM"
+    truncate -s 0 "$SRC_CMP_CHKSUM"
 
     find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" -exec basename {} \; |
         sort -V |
@@ -202,7 +202,7 @@ function download_x_latest() {
         return
     }
 
-    > "$SRC_CMP_CHKSUM"
+    truncate -s 0 "$SRC_CMP_CHKSUM"
 
     find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" -exec basename {} \; |
         sort -V |
@@ -212,7 +212,7 @@ function download_x_latest() {
 }
 
 function regen_checksum() {
-    > "$SRC_CMP_CHKSUM"
+    truncate -s 0 "$SRC_CMP_CHKSUM"
 
     find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" -exec basename {} \; |
         sort -V |
@@ -288,18 +288,22 @@ while [[ $# -gt 0 ]]; do
             download_specific "$2"
             exit 0
         ;;
+
         --download-best)
             download_x_latest "$2"
             exit 0
         ;;
+
         --download-max-support)
             download_x_latest "$2"
             exit 0
         ;;
+
         --download-bleeding)
             download_x_latest
             exit 0
         ;;
+
         --verify-archive)
             regen_checksum
             verify_archive
@@ -310,6 +314,7 @@ while [[ $# -gt 0 ]]; do
             printf "\e[36m%-22s\e[0m : %s/%s\n" "Size" "$SIZE" "$(df -h / | awk 'NR==2 {print $4}')"
             exit 0
         ;;
+
         --wipe-archive)
             printf "You are about to  \e[31mWIPE MULTIPLE GIGABYTES\e[0m of data\n"
             read -r -p "Type YES to continue: " reply
@@ -320,9 +325,11 @@ while [[ $# -gt 0 ]]; do
                 fi
             exit 0
         ;;
+
         --update-archive)
             update_archive
             exit 0
         ;;
+        
     esac
 done
