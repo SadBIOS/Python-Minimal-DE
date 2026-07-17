@@ -77,10 +77,12 @@ function offline() {
             y|Y|yes|YES)
                 makepkg_cache
                 exit 0
-                ;;
+            ;;
+            
             n|N|no|NO)
                 exit 0
-                ;;
+            ;;
+        
         esac
     fi
 

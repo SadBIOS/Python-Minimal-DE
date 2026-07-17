@@ -95,17 +95,13 @@ function extract_exact() {
     case "$archive" in
         *.tar.xz)
             tar -xvJf "$archive" -C "$BUILD_DIR"
-            ;;
+        ;;
         *.tar.bz2)
             tar -xvjf "$archive" -C "$BUILD_DIR"
-            ;;
+        ;;
         *.tar.gz|*.tgz)
             tar -xvzf "$archive" -C "$BUILD_DIR"
-            ;;
-        *)
-            echo "Error: unsupported archive format: $archive"
-            return 1
-            ;;
+        ;;
     esac
 }
 
@@ -222,10 +218,12 @@ function builder() {
     case "$option" in
         1)
             bash "$ENGINE_SCRIPT" --resolve-online
-            ;;
+        ;;
+        
         2)
             bash "$ENGINE_SCRIPT" --resolve-offline
-            ;;
+        ;;
+    
     esac
 }
 
