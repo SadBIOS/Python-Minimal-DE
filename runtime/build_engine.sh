@@ -99,12 +99,15 @@ function extract_exact() {
         *.tar.xz)
             tar -xvJf "$archive" -C "$BUILD_DIR"
         ;;
+
         *.tar.bz2)
             tar -xvjf "$archive" -C "$BUILD_DIR"
         ;;
+
         *.tar.gz|*.tgz)
             tar -xvzf "$archive" -C "$BUILD_DIR"
         ;;
+        
     esac
 }
 
