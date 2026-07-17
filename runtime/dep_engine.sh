@@ -55,7 +55,7 @@ function makepkg_cache() {
                 sudo chown -Rv "$USER:$USER" "$target_dir"
                 cd "$SCRIPT_ROOT"
                 tar -czvf py_build_dependencies.tar.gz py_build_dependencies
-                rm -vrf dirpath="$SCRIPT_ROOT/py_build_dependencies"
+                rm -vrf "$SCRIPT_ROOT/py_build_dependencies"
                 echo "Offline archive successfully created at: $SCRIPT_ROOT/py_build_dependencies.tar.gz"
                 exit 0
                 ;;
