@@ -1,13 +1,28 @@
 root := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-dependencies := $(root)<dependency archive name>.tar.gz
+
+python_version := 3.12
+python_patch_level := 10
+
+ifeq ($(strip $(python_patch_level)),)
+python_dot := $(python_version)
+python_dash := $(shell latest=$$(ls -d $(root)venv_$(subst .,_,$(python_version))_* 2>/dev/null | sort -V | tail -1); if [ -n "$$latest" ]; then basename "$$latest" | sed 's/venv_//'; fi )
+
+else
+python_dot := $(python_version).$(python_patch_level)
+python_dash := $(subst .,_,$(python_version))_$(python_patch_level)
+endif
 
 default:
-	@echo "$(dependencies)"
+	@$(root)runtime/core.sh --init-env $(python_dot)
+
+print_vers:
+	@echo "python_dot=$(python_dot)"
+	@echo "python_dash=$(python_dash)"
+	@$(root)venv_$(python_dash)/bin/python --version
 
 init_env:
 	@chmod +x $(root)runtime/*.sh
-	@echo "Runtime Scripts Have Been Activated!"
-
+	
 cache_build:
 	@$(root)runtime/src_engine.sh --build-cache
 
