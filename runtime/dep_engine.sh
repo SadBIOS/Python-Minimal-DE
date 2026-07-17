@@ -102,18 +102,18 @@ while [[ $# -gt 0 ]]; do
         --resolve-online)
             online
             exit 0
-            ;;
+        ;;
 
         --resolve-offline)
             offline "$2"
             shift 2
             exit 0
-            ;;
+        ;;
 
         --build-offline)
             makepkg_cache
             exit 0
-            ;;
+        ;;
 
     esac
 done
