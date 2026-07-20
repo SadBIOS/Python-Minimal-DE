@@ -96,7 +96,7 @@ function offline() {
     fi
 
     sudo apt install -y "$dirpath"/*.deb
-    rm -vrf dirpath="$SCRIPT_ROOT/py_build_dependencies"
+    rm -vrf "$SCRIPT_ROOT/py_build_dependencies"
 }
 
 while [[ $# -gt 0 ]]; do
