@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 root := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 bin_root := $(root)runtime/data/build_dir/compiled_binaries
 pip_root := $(root)runtime/data/pip_packages/
