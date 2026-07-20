@@ -4,4 +4,4 @@ if [[ $# -eq 0 ]]; then
   exit 0
 fi
 
-function package_cacher() {}
+# function package_cacher() {}

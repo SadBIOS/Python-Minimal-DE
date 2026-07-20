@@ -62,13 +62,13 @@ function make_env() {
     "$py" -m venv "venv_${major}_${minor}_${patch}"
 }
 
-function package_parser() {}
+# function package_parser() {}
 
-function pip_cache_request() {}
+# function pip_cache_request() {}
 
-function pip_install_request() {}
+# function pip_install_request() {}
 
-function runner() {}
+# function runner() {}
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
