@@ -31,7 +31,7 @@ force_cache_wipe:
 
 
 build_src_array:
-	@$(root)runtime/
+	@for pv in $(python_version); do if [ -z "$(strip $(python_patch_level))" ]; then p_dot="$$pv"; latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); if [ -n "$$latest" ]; then p_dash=$$(basename "$$latest" | sed 's/venv_//'); else p_dash=""; fi; else p_dot="$$pv.$(strip $(python_patch_level))"; p_dash="$${pv//./_}_$(strip $(python_patch_level))"; fi; $(root)runtime/build_engine.sh --build "$$p_dot"; done
 
 # download_src_exact:
 
