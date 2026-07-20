@@ -252,10 +252,5 @@ while [[ $# -gt 0 ]]; do
             exit 0
         ;;
 
-        --build-exact)
-            builder "$2"
-            exit 0
-        ;;
-
     esac
 done
