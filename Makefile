@@ -62,7 +62,3 @@ force_cache_wipe:
 
 # resolve_dependencies:
 
-
-test:
-	@echo "$(bin_root)"
-	@echo "$(pip_root)"
