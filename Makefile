@@ -25,7 +25,7 @@ default:
 	@rm -rf $(root)__pycache__ 2>/dev/null
 
 system_init:
-	@$(root)runtime/src_engine.sh --build-cache
+	@$(root)runtime/src_engine.sh --force-build-cache
 
 download_src:
 	@if [ -z "$(python_version)" ]; then $(root)runtime/src_engine.sh --download-bleeding; elif [ -z "$(python_patch_level)" ]; then $(root)runtime/src_engine.sh --download-max-patch-lvl $(python_dot); else $(root)runtime/src_engine.sh --download-exact $(python_dot); fi
@@ -89,4 +89,4 @@ full_workspace_reset:
 	@$(root)runtime/src_engine.sh --force-wipe-cache
 	@$(root)runtime/src_engine.sh --wipe-archive
 	@$(root)runtime/core.sh --force-pip-cache-wipe
-	@rm -vrf $(root)runtime/data/* 2>/dev/null
+	@rm -vrf $(root)runtime/data/ 2>/dev/null
