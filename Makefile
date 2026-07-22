@@ -6,8 +6,8 @@ paq_req_path := $(root)pkglist.txt
 
 script_name := script.py
 
-python_version := 3.12
-python_patch_level := 10
+python_version := 3.14
+python_patch_level := 
 python_vers_multi := 3.11 3.12 3.13 3.14
 
 ifeq ($(strip $(python_patch_level)),)
@@ -27,13 +27,14 @@ test:
 
 # default:
 
-
 load_packages:
+	@$(root)runtime/pip_handel.sh --pkglist-path "$(paq_req_path)" --pip-bin-src "$(root)venv_$(python_dash)/bin/python -m pip" --local-package-root "$(pip_root)python_$(python_dash)/" --resolve-pip
+
+cache_packages:
 	@$(root)runtime/pip_handel.sh --pkglist-path "$(paq_req_path)" --pip-bin-src "$(root)venv_$(python_dash)/bin/python -m pip" --local-package-root "$(pip_root)python_$(python_dash)/" --cache-pip
 
 init_venv:
 	@$(root)runtime/core.sh --init-env $(python_dot)
-	@$(root)runtime/pip_handel.sh --pkglist-path "$(paq_req_path)" --pip-bin-src "$(root)venv_$(python_dash)/bin/python -m pip" --local-package-root "$(pip_root)python_$(python_dash)/" --resolve-pip
 
 build_src:
 	@$(root)runtime/build_engine.sh --build $(python_dot)
