@@ -41,8 +41,7 @@ init_venv_array:
 	@for pv in $(python_vers_multi); do p_dot="$$pv"; latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || p_dash=""; $(root)runtime/core.sh --init-env "$$p_dot"; done
 
 print_venv_details_array:
-	@for pv in $(python_vers_multi); do latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || continue; $(root)venv_$$p_dash/bin/python --version; done
-	@for pv in $(python_vers_multi); do latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || continue; $(root)venv_$$p_dash/bin/python -m pip --disable-pip-version-check list; done
+	@for venv in $$(ls -d $(root)venv_* 2>/dev/null | sort -V); do name=$$(basename "$$venv"); echo "------------------------------------------------------------------------"; echo "------------------------------------------------------------------------"; echo "Virtual Environment Name = $$name"; printf "Python Version           = "; "$$venv/bin/python" --version; echo "------------------------------------------------------------------------"; echo "Installed Pip Packages"; echo "------------------------------------------------------------------------"; "$$venv/bin/python" -m pip --disable-pip-version-check list; echo "------------------------------------------------------------------------"; done
 
 build_src_array:
 	@for pv in $(python_vers_multi); do p_dot="$$pv"; latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || p_dash=""; $(root)runtime/build_engine.sh --build "$$p_dot"; done
