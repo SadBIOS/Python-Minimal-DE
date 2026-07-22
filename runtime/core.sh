@@ -6,12 +6,11 @@ fi
 
 SCRIPT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 CMPLD_BIN_ROOT="$SCRIPT_ROOT/data/build_dir/compiled_binaries"
+PIP_CACHE="$SCRIPT_ROOT/data/pip_packages"
 
 if [[ ! -d "$CMPLD_BIN_ROOT" ]] || ! find "$CMPLD_BIN_ROOT" -mindepth 1 -print -quit | grep -q .; then
     exit 0
 fi
-
-
 
 function make_env() {
     req="$1"
@@ -62,13 +61,16 @@ function make_env() {
     "$py" -m venv "venv_${major}_${minor}_${patch}"
 }
 
-# function runner() {}
-
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --init-env)
             make_env "$2"
             shift 2
+            exit 0
+        ;;
+
+        --force-pip-cache-wipe)
+            rm -vrf "$PIP_CACHE"/* 2>/dev/null
             exit 0
         ;;
 

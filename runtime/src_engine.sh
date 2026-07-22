@@ -289,12 +289,7 @@ while [[ $# -gt 0 ]]; do
             exit 0
         ;;
 
-        --download-best)
-            download_x_latest "$2"
-            exit 0
-        ;;
-
-        --download-max-support)
+        --download-max-patch-lvl)
             download_x_latest "$2"
             exit 0
         ;;
