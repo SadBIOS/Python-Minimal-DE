@@ -9,3 +9,8 @@ SCRIPT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 function req_resolver() {}
 function req_processor() {}
+
+while [[ $# -gt 0 ]]; do
+    case ?? in
+    esac
+done
