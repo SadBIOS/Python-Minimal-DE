@@ -19,12 +19,6 @@ python_dot := $(python_version).$(python_patch_level)
 python_dash := $(subst .,_,$(python_version))_$(python_patch_level)
 endif
 
-test:
-	@echo "$(paq_req_path)"
-	@echo "$(root)venv_$(python_dash)/bin/python -m pip"
-	@echo "$(pip_root)"
-
-
 # default:
 
 load_packages:
@@ -39,14 +33,16 @@ init_venv:
 build_src:
 	@$(root)runtime/build_engine.sh --build $(python_dot)
 
-print_vers:
+print_env_details:
 	@$(root)venv_$(python_dash)/bin/python --version
+	@$(root)venv_$(python_dash)/bin/python -m pip list
 
 init_venv_array:
 	@for pv in $(python_vers_multi); do p_dot="$$pv"; latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || p_dash=""; $(root)runtime/core.sh --init-env "$$p_dot"; done
 
 print_vers_array:
 	@for pv in $(python_vers_multi); do latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || continue; $(root)venv_$$p_dash/bin/python --version; done
+	@for pv in $(python_vers_multi); do latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || continue; $(root)venv_$$p_dash/bin/python -m pip list; done
 
 build_src_array:
 	@for pv in $(python_vers_multi); do p_dot="$$pv"; latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || p_dash=""; $(root)runtime/build_engine.sh --build "$$p_dot"; done
