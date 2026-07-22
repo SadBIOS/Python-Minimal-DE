@@ -6,7 +6,7 @@ paq_req_path := $(root)pkglist.txt
 
 script_name := script.py
 
-python_version := 3.14
+python_version := 3.11
 python_patch_level := 
 python_vers_multi := 3.11 3.12 3.13 3.14
 
@@ -33,16 +33,16 @@ init_venv:
 build_src:
 	@$(root)runtime/build_engine.sh --build $(python_dot)
 
-print_env_details:
+print_venv_details:
 	@$(root)venv_$(python_dash)/bin/python --version
-	@$(root)venv_$(python_dash)/bin/python -m pip list
+	@$(root)venv_$(python_dash)/bin/python -m pip --disable-pip-version-check list
 
 init_venv_array:
 	@for pv in $(python_vers_multi); do p_dot="$$pv"; latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || p_dash=""; $(root)runtime/core.sh --init-env "$$p_dot"; done
 
-print_vers_array:
+print_venv_details_array:
 	@for pv in $(python_vers_multi); do latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || continue; $(root)venv_$$p_dash/bin/python --version; done
-	@for pv in $(python_vers_multi); do latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || continue; $(root)venv_$$p_dash/bin/python -m pip list; done
+	@for pv in $(python_vers_multi); do latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || continue; $(root)venv_$$p_dash/bin/python -m pip --disable-pip-version-check list; done
 
 build_src_array:
 	@for pv in $(python_vers_multi); do p_dot="$$pv"; latest=$$(ls -d $(root)venv_$${pv//./_}_* 2>/dev/null | sort -V | tail -1); [ -n "$$latest" ] && p_dash=$$(basename "$$latest" | sed 's/venv_//') || p_dash=""; $(root)runtime/build_engine.sh --build "$$p_dot"; done
