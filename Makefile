@@ -4,7 +4,7 @@ bin_root := $(root)runtime/data/build_dir/compiled_binaries
 pip_root := $(root)runtime/data/pip_packages/
 paq_req_path := $(root)pkglist.txt
 
-script_name :=
+script_name := script.py
 
 python_version := 3.12
 python_patch_level := 10
@@ -28,11 +28,12 @@ test:
 # default:
 
 
-# load_packages:
-
+load_packages:
+	@$(root)runtime/pip_handel.sh --pkglist-path "$(paq_req_path)" --pip-bin-src "$(root)venv_$(python_dash)/bin/python -m pip" --local-package-root "$(pip_root)python_$(python_dash)/" --cache-pip
 
 init_venv:
 	@$(root)runtime/core.sh --init-env $(python_dot)
+	@$(root)runtime/pip_handel.sh --pkglist-path "$(paq_req_path)" --pip-bin-src "$(root)venv_$(python_dash)/bin/python -m pip" --local-package-root "$(pip_root)python_$(python_dash)/" --resolve-pip
 
 build_src:
 	@$(root)runtime/build_engine.sh --build $(python_dot)
@@ -75,4 +76,3 @@ force_cache_wipe:
 
 
 # resolve_dependencies:
-
