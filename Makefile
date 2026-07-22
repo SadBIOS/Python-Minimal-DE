@@ -2,6 +2,9 @@ SHELL := /bin/bash
 root := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 bin_root := $(root)runtime/data/build_dir/compiled_binaries
 pip_root := $(root)runtime/data/pip_packages/
+paq_req_path := $(root)pkglist.txt
+
+script_name :=
 
 python_version := 3.12
 python_patch_level := 10
@@ -15,6 +18,18 @@ else
 python_dot := $(python_version).$(python_patch_level)
 python_dash := $(subst .,_,$(python_version))_$(python_patch_level)
 endif
+
+test:
+	@echo "$(paq_req_path)"
+	@echo "$(root)venv_$(python_dash)/bin/python -m pip"
+	@echo "$(pip_root)"
+
+
+# default:
+
+
+# load_packages:
+
 
 init_venv:
 	@$(root)runtime/core.sh --init-env $(python_dot)
