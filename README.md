@@ -1,4 +1,2 @@
-# PROJECT NEAR COMPLETION
----
-### Documentation is Being Prepared
+### Python Minimal DE (Development Environment) for Linux
 ---
