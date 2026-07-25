@@ -1,5 +1,4 @@
 ## Python Minimal DE (Development Environment) for Linux
----
 This project is mainly designed to make a completely offline capable development of Python. Developed for deployment in **Debian** systems. 
 <br>
 
@@ -20,7 +19,7 @@ Once a the repository is extracted (either via [cloning](https://docs.github.com
 ```bash
 chmod +x *.sh
 ```
-
+Run the following command to build
 ___
 
 ### Deployment on Air-Gapped Systems
