@@ -16,6 +16,7 @@ The primary goal of this system is not to replace any existing tools. Rather, bu
 ___
 
 ### Operation
+Once a the repository is extracted (either via [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or by manually downloading the source code) you must navigate to the ```~/Python-Minimal-DE-main/runtime/ ``` (assuming that you have place the contents inside the )
 ___
 
 ### Deployment on Air-Gapped Systems
