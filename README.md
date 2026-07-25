@@ -15,4 +15,8 @@ The primary goal of this system is not to replace any existing tools. Rather, bu
 
 ___
 
-### Deployment and Operation
+### Operation
+___
+
+### Deployment on Air-Gapped Systems
+___
