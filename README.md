@@ -20,6 +20,7 @@ Once a the repository is extracted (either via [cloning](https://docs.github.com
 ```bash
 chmod +x *.sh
 ```
+
 ___
 
 ### Deployment on Air-Gapped Systems
@@ -27,5 +28,6 @@ ___
 
 > [!IMPORTANT]  
 > Tested and built on the following builds
+> * Debian 13.5 *"Trixie"* Kernel **6.12.94+deb13-amd64**
 > * Debian 13.5 *"Trixie"* Kernel **6.12.95+deb13-amd64**
 > * Debian 13.6 *"Trixie"* Kernel **6.12.96+deb13-amd64**
