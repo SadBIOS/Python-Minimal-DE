@@ -125,9 +125,9 @@ ___
 ### Deployment on Air-Gapped Systems
 
 > [!IMPORTANT]
-> On a near **IDENTICAL** machine with a build (GPU acceleration and special hardware specific requirements are not taken into consideration). For more information click [here](https://github.com/SadBIOS/Cheat-Sheet/blob/main/AirGapped_Debian_Updates.md).
+> This should be performed on a online machine with a near **IDENTICAL** software build (GPU acceleration and special hardware specific requirements are not taken into consideration). For more information click [here](https://github.com/SadBIOS/Cheat-Sheet/blob/main/AirGapped_Debian_Updates.md).
 
-
+**STEP 1:** Create a copy of the system (i.e. git repo) on the target machine and assuming that it's placed within the
 ```bash
 ```
 ___
