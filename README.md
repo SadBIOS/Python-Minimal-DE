@@ -105,7 +105,7 @@ make create_venv_array
 > [!IMPORTANT]
 > The ```pkglist.txt``` file has version specification metthods
 > * Exact version is set by ```==```
-> * The latest available version is set when just the package name is written without any trailing characters or alphanumeric symbols.
+> * The latest available version is set when just the package name is written without any trailing characters or alphanumeric symbols
 
 ```bash
 make 
