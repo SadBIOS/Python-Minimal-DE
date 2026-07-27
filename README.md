@@ -102,6 +102,13 @@ make create_venv_array
 > [!NOTE]
 > The packages in the ```pkglist.txt``` file will be downloaded according to the version of Python based on the value of the ```python_version``` variable (and the patch level if ```python_patch_level``` is specified).
 
+> [!IMPORTANT]
+> The ```pkglist.txt```
+
+```bash
+make 
+```
+
 ```bash
 ```
 ___
