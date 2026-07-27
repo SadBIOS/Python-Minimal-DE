@@ -115,14 +115,16 @@ make cache_packages
 ```
 Followed by
 ```bash
-make cache_packages
+make load_packages
 ```
+<br>
 
-```bash
-```
+Finally run the ```main.py``` file with ```make```
 ___
 
 ### Deployment on Air-Gapped Systems
+```bash
+```
 ___
 
 > [!IMPORTANT]  
