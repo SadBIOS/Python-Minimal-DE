@@ -63,7 +63,11 @@ make verify_local_sources
 
 **STEP 3:** Building from source.
 ```bash
-
+make build_src
+```
+For multiple sources
+```bash
+make build_src_array
 ```
 
 ```bash
