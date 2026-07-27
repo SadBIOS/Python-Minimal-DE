@@ -21,6 +21,7 @@ chmod +x *.sh
 ```
 Run the following command to resolve dependencies that are required to build python from source and for the general operation of this system.
 ```bash
+./dep_engine.sh --resolve-online
 ```
 ```bash
 ```
