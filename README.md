@@ -49,10 +49,17 @@ make download_src
 > [!WARNING]
 > The multi-source download feature has not been tested for exact versions (specified to the patch level). It will download the latest patch of the versions specified in the ```python_vers_multi``` variable.
 
-Verify the downloaded source packages.
+To trigger the multiple source download sequence, run the following.
+```bash
+make download_src_array
+```
+
+**RECOMMENDED:** Verify the downloaded source packages
 ```bash
 make verify_local_sources
 ```
+For multiple sources
+
 ```bash
 ```
 ___
