@@ -24,6 +24,17 @@ Run the following command to resolve dependencies that are required to build pyt
 ./dep_engine.sh --resolve-online
 ```
 Test it out by running ```which make``` and if it returns ```/usr/bin/make``` then rest assured that everything went accordingly. 
+
+Now go back to  ```~/Python-Minimal-DE-main/``` as this will be the root of your systems shell while operating this project.
+
+<br>
+
+**STEP 1**
+
+Initialize the system and populate the system with available Python versions and download URLs.
+```bash
+make system_init
+```
 ```bash
 ```
 ___
