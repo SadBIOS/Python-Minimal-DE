@@ -54,11 +54,17 @@ To trigger the multiple source download sequence, run the following.
 make download_src_array
 ```
 
-**RECOMMENDED:** Verify the downloaded source packages
+**RECOMMENDED:** Verify the downloaded source packages (has been tested for both single/multi-version local caches).
 ```bash
 make verify_local_sources
 ```
-For multiple sources
+
+<br>
+
+**STEP 3:** Building from source.
+```bash
+
+```
 
 ```bash
 ```
