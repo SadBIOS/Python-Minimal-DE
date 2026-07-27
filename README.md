@@ -19,7 +19,11 @@ Once a the repository is extracted (either via [cloning](https://docs.github.com
 ```bash
 chmod +x *.sh
 ```
-Run the following command to build
+Run the following command to resolve dependencies that are required to build python from source and for the general operation of this system.
+```bash
+```
+```bash
+```
 ___
 
 ### Deployment on Air-Gapped Systems
