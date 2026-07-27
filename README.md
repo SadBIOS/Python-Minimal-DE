@@ -139,8 +139,20 @@ ___
 > [!NOTE]
 > The command for multiple versions are shown here as it is recommended (at the latest patch level) unless required otherwise.
 
-
+Navigate to ```~/Python-Minimal-DE-main/runtime/ ``` and run the following commands
 ```bash
+./dep_engine.sh --build-offline
+```
+```bash
+./src_engine.sh --force-build-cache
+```
+Repeat the following for every required version. 
+```bash
+./src_engine.sh --download-max-patch-lvl X.Y
+```
+Although the highest patch level is recommended, you can run ```src_engine.sh --download-exact X.Y.Z``` to download a specific version
+```bash
+./
 ```
 ___
 
