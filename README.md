@@ -52,7 +52,7 @@ make download_src
 > [!NOTE]
 > If you want to download multiple versions of Python edit the ```python_vers_multi``` variable inside the **Makefile** (an example is already set up).
 
-> [!WARNING]
+> [!IMPORTANT]
 > The multi-source download feature has not been tested for exact versions (specified to the patch level). It will download the latest patch of the versions specified in the ```python_vers_multi``` variable.
 
 To trigger the multiple source download sequence, run the following.
