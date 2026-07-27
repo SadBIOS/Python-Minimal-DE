@@ -23,6 +23,7 @@ Run the following command to resolve dependencies that are required to build pyt
 ```bash
 ./dep_engine.sh --resolve-online
 ```
+Test it out by running ```which make``` and if it returns ```/usr/bin/make``` then rest assured that everything went accordingly. 
 ```bash
 ```
 ___
