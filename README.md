@@ -126,8 +126,23 @@ ___
 
 > [!IMPORTANT]
 > This should be performed on a online machine with a near **IDENTICAL** software build (GPU acceleration and special hardware specific requirements are not taken into consideration). For more information click [here](https://github.com/SadBIOS/Cheat-Sheet/blob/main/AirGapped_Debian_Updates.md).
+>
+> ---
+> Copying the
+ 
 
-**STEP 1:** Create a copy of the system (i.e. git repo) on the target machine and assuming that it's placed within the
+<br>
+
+**STEP 1:** Create a copy of the system (i.e. git repo) on the target machine and assuming that it's placed within the ```$HOME``` directory of the ```$USER```
+
+<br>
+
+**STEP 2:** Run the following command to create an offline copy of required dependencies
+
+> [!NOTE]
+> The command for multiple versions are shown here as it is recommended (at the latest patch level) unless required otherwise.
+
+
 ```bash
 ```
 ___
@@ -137,5 +152,6 @@ ___
 > * Debian 13.5 *"Trixie"* Kernel **6.12.94+deb13-amd64**
 > * Debian 13.5 *"Trixie"* Kernel **6.12.95+deb13-amd64**
 > * Debian 13.6 *"Trixie"* Kernel **6.12.96+deb13-amd64**
+>
 > ---
 > Future editions will streamline multi-version installation and package management procedures, which will come **Soon<sup>TM</sup>**
