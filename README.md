@@ -37,7 +37,8 @@ make system_init
 
 **STEP 2:** Edit the **Makefile**, change the ```python_version``` to the desired Python version (it is set to *v3.12*).
 
-
+> [!NOTE]
+> If ```python_patch_level``` is left blank the system will automatically assume that the user requested the latest patch for that major-minor release combination. To get the **EXACT** version (e.g. 3.12.10) set the ```python_patch_level``` variable accordingly (which in this case is already set to 10).
 
 ```bash
 ```
