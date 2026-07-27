@@ -70,6 +70,14 @@ For multiple sources.
 make build_src_array
 ```
 
+> [!TIP]
+> The compilation will take a **LOT** of time (depending on your system). So, being patient is generally recommended (as for many things in life).
+
+
+<br>
+
+**STEP 4:** Create Virtual Environment
+
 ```bash
 ```
 ___
