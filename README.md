@@ -65,7 +65,7 @@ make verify_local_sources
 ```bash
 make build_src
 ```
-For multiple sources
+For multiple sources.
 ```bash
 make build_src_array
 ```
