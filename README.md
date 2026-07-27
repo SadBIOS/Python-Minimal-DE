@@ -100,7 +100,7 @@ make create_venv_array
 **STEP 5:** Populate the Virtual Environment with packages
 
 > [!NOTE]
-> The packages in the ```pkglist.txt``` file will be downloaded according to the version of Python
+> The packages in the ```pkglist.txt``` file will be downloaded according to the version of Python based on the value of the ```python_version``` variable (and the patch level if ```python_patch_level``` is specified).
 
 ```bash
 ```
