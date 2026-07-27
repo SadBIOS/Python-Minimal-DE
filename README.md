@@ -77,7 +77,19 @@ make build_src_array
 <br>
 
 **STEP 4:** Create Virtual Environment
+```bash
+make create_venv
+```
+For multiple versions
+```bash
+make create_venv_array
+```
 
+<br>
+
+**STEP 5:** Populate the Virtual Environment with packages
+> [!NOTE]
+> 
 ```bash
 ```
 ___
