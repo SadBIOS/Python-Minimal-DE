@@ -123,6 +123,11 @@ Finally run the ```main.py``` file with ```make```
 ___
 
 ### Deployment on Air-Gapped Systems
+
+> [!IMPORTANT]
+> On a near **IDENTICAL** machine with a build (GPU acceleration and special hardware specific requirements are not taken into consideration). For more information click [here](https://github.com/SadBIOS/Cheat-Sheet/blob/main/AirGapped_Debian_Updates.md).
+
+
 ```bash
 ```
 ___
