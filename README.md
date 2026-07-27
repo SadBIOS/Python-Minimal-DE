@@ -130,11 +130,11 @@ ___
 
 <br>
 
-**STEP 1:** Create a copy of the system (i.e. git repo) on the target machine and assuming that it's placed within the ```$HOME``` directory of the ```$USER```
+**STEP 1:** Create a copy of the system (i.e. git repo) on the target machine and assuming that it's placed within the ```$HOME``` directory of the user
 
 <br>
 
-**STEP 2:** Run the following command to create an offline copy of required dependencies
+**STEP 2:** Run the following command to create an offline copy of required dependencies and source files
 
 > [!NOTE]
 > The command for multiple versions are shown here as it is recommended (at the latest patch level) unless required otherwise.
@@ -150,7 +150,13 @@ Repeat the following for every required version.
 ```bash
 ./src_engine.sh --download-max-patch-lvl X.Y
 ```
-Although the highest patch level is recommended, you can run ```src_engine.sh --download-exact X.Y.Z``` to download a specific version
+Although the highest patch level is recommended, you can run ```src_engine.sh --download-exact X.Y.Z``` to download a specific version.
+
+Compress the ```~/Python-Minimal-DE-main/``` directory and copy it over to the air-gapped machine (practice OPSEC procedures as a general recommendation).
+
+<br>
+
+**STEP 3:** On the air-gapped machine after extracting the archive to the ```$HOME``` directory of the user (this is an assumption for ease of use), navigate to 
 ```bash
 ./
 ```
