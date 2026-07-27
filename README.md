@@ -127,4 +127,4 @@ ___
 > * Debian 13.5 *"Trixie"* Kernel **6.12.95+deb13-amd64**
 > * Debian 13.6 *"Trixie"* Kernel **6.12.96+deb13-amd64**
 > ---
-> Future editions will streamline multi-version installation and package management procedures. It will come **Soon<sup>TM</sup>**
+> Future editions will streamline multi-version installation and package management procedures. It will come **Soon<sup>TM</sup>.**
