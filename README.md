@@ -93,7 +93,7 @@ make create_venv_array
 
 > [!TIP]
 > * Test the Python environment with ```make print_venv_details``` and ```make print_venv_details_array``` for deployments that have multiple versions.
-> * This che
+> * This check is also recommended to be performed after completing **STEP 5**
 
 <br>
 
@@ -113,6 +113,10 @@ make create_venv_array
 ```bash
 make cache_packages
 ```
+Followed by
+```bash
+make cache_packages
+```
 
 ```bash
 ```
@@ -127,4 +131,4 @@ ___
 > * Debian 13.5 *"Trixie"* Kernel **6.12.95+deb13-amd64**
 > * Debian 13.6 *"Trixie"* Kernel **6.12.96+deb13-amd64**
 > ---
-> Future editions will streamline multi-version installation and package management procedures which will come **Soon<sup>TM</sup>**
+> Future editions will streamline multi-version installation and package management procedures, which will come **Soon<sup>TM</sup>**
