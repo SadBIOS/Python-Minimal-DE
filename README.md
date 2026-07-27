@@ -30,11 +30,16 @@ Now go back to  ```~/Python-Minimal-DE-main/``` as this will be the root of your
 <br>
 
 **STEP 1**
-
 Initialize the system and populate the system with available Python versions and download URLs.
 ```bash
 make system_init
 ```
+
+**STEP 2**
+Edit the **Makefile**, change the ```python_version``` to the desired Python version (it is set to *v3.12*).
+
+
+
 ```bash
 ```
 ___
