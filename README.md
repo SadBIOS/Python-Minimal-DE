@@ -41,6 +41,19 @@ make system_init
 > If ```python_patch_level``` is left blank the system will automatically assume that the user requested the latest patch for that major-minor release combination. To get the **EXACT** version (e.g. 3.12.10) set the ```python_patch_level``` variable accordingly (which in this case is already set to 10).
 
 ```bash
+make download_src
+```
+> [!NOTE]
+> If you want to download multiple versions of Python edit the ```python_vers_multi``` variable inside the **Makefile** (an example is already set up).
+
+> [!WARNING]
+> The multi-source download feature has not been tested for exact versions (specified to the patch level). It will download the latest patch of the versions specified in the ```python_vers_multi``` variable.
+
+Verify the downloaded source packages.
+```bash
+make verify_local_sources
+```
+```bash
 ```
 ___
 
