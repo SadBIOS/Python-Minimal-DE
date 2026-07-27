@@ -88,8 +88,10 @@ make create_venv_array
 <br>
 
 **STEP 5:** Populate the Virtual Environment with packages
+
 > [!NOTE]
 > 
+
 ```bash
 ```
 ___
