@@ -19,7 +19,7 @@ Once a the repository is extracted (either via [cloning](https://docs.github.com
 ```bash
 chmod +x *.sh
 ```
-Run the following command to resolve dependencies that are required to build python from source and for the general operation of this system.
+Run the following command to resolve dependencies that are required to build Python from source and for the general operation of this system.
 ```bash
 ./dep_engine.sh --resolve-online
 ```
@@ -85,12 +85,16 @@ For multiple versions
 make create_venv_array
 ```
 
+> [!TIP]
+> * Test the Python environment with ```make print_venv_details``` and ```make print_venv_details_array``` for deployments that have multiple versions.
+> * This che
+
 <br>
 
 **STEP 5:** Populate the Virtual Environment with packages
 
 > [!NOTE]
-> test?
+> The packages in the ```pkglist.txt``` file will be downloaded according to the version of Python
 
 ```bash
 ```
