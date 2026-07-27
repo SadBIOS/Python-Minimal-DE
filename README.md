@@ -165,7 +165,11 @@ Compress the ```~/Python-Minimal-DE-main/``` directory and copy the archive over
 ./dep_engine.sh --resolve-offline
 ```
 This can be also done by placing ```py_build_dependencies.tar.gz``` file in ```~/Python-Minimal-DE-main/runtime/``` instead of the whole directory.
-Run the compilation commands in [this](#operation) section.
+
+Finally, perform the compilation steps in [this](#operation) section.
+
+> [!NOTE]
+> Keeping the ```py_build_dependencies.tar.gz``` and all required packages (a compressed archive of ```~/Python-Minimal-DE-main/runtime/data/pip_packages/```) is the most efficient method for operation, given the end deployment environment is properly planned out.
 ___
 
 > [!IMPORTANT]  
