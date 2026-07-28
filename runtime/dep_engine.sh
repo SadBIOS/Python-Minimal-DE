@@ -90,11 +90,6 @@ function offline() {
 
     dirpath="$SCRIPT_ROOT/py_build_dependencies"
 
-    # if [[ -f /etc/apt/sources.list ]]; then
-    #     sudo mv -v /etc/apt/sources.list /etc/apt/sources.list.bak
-    #     trap 'echo "Restoring APT mirrors..."; [ -f /etc/apt/sources.list.bak ] && sudo mv -v /etc/apt/sources.list.bak /etc/apt/sources.list' EXIT
-    # fi
-
     if [[ -f /etc/apt/sources.list || -d /etc/apt/sources.list.d ]]; then
 
         [[ -f /etc/apt/sources.list ]] && sudo mv -v /etc/apt/sources.list /etc/apt/sources.list.bak
