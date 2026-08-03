@@ -177,7 +177,7 @@ Finally, perform the compilation steps in [this](#operation) section. Omit the `
 ___
 
 > [!IMPORTANT]  
-> Tested and built on the following builds
+> Tested and built on the following OS builds
 > * Debian 13.5 *"Trixie"*, Kernel **6.12.94+deb13-amd64**
 > * Debian 13.5 *"Trixie"*, Kernel **6.12.95+deb13-amd64**
 > * Debian 13.6 *"Trixie"*, Kernel **6.12.96+deb13-amd64**
