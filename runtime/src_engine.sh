@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $# -eq 0 ]]; then
-  exit 0
+    exit 0
 fi
 
 SCRIPT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
@@ -11,19 +11,17 @@ SRC_CMP_DIR="$SCRIPT_ROOT/data/src_root/archives"
 SRC_CMP_CHKSUM="$SCRIPT_ROOT/data/src_root/src_chksum_sha512.txt"
 ERR_DMP_FILE="$SCRIPT_ROOT/data/src_root/check_fail.txt"
 SRC_UPDT_LOG="$SCRIPT_ROOT/data/src_root/src_update.txt"
-
-mkdir -pv "$SCRIPT_ROOT/data/src_root/archives"
-touch "$HTML_SOURCE" "$OUTPUT_FILE" "$SRC_CMP_CHKSUM" "$ERR_DMP_FILE" "$SRC_UPDT_LOG"
-
 OVER_WRITE_ARCHIVE=0
 MISS=0
 FAIL=0
 PASS=0
 SIZE=""
 
+mkdir -pv "$SCRIPT_ROOT/data/src_root/archives"
+touch "$HTML_SOURCE" "$OUTPUT_FILE" "$SRC_CMP_CHKSUM" "$ERR_DMP_FILE" "$SRC_UPDT_LOG"
+
 function download_links() {
     wget -v -O "$HTML_SOURCE" https://www.python.org/downloads/source/
-
     grep -oE "(https?://www\.python\.org)?/ftp/python/[^\"'\s>]+/Python-[^\"'\s>]+" "$HTML_SOURCE" | grep -vE '[0-9](a|b|rc)[0-9]' | sed -E 's|^(https?://www\.python\.org)?|https://www.python.org|' | awk -F'/' '{score=0; if($0~/\.tar\.xz$/)score=3; else if($0~/\.tar\.bz2$/)score=2; else if($0~/\.tgz$/||$0~/\.tar\.gz$/)score=1; if(!($6 in b) || score>b[$6]){b[$6]=score; u[$6]=$0}} END{for(v in u) print u[v]}' | sort -V > "$OUTPUT_FILE"
 }
 
@@ -33,21 +31,16 @@ function build_archive() {
         if [[ "$reply" == "YES" ]]; then
             while IFS= read -r url; do
                 [[ -z "$url" ]] && continue
-
                 filename="$(basename "$url")"
                 filepath="$SRC_CMP_DIR/$filename"
-
                 wget -v -O "$filepath" "$url"
-
                 if [[ ! -f "$filepath" ]]; then
                     echo "Failed to download $url" >&2
                     continue
                 fi
 
                 sha512sum_value="$(sha512sum "$filepath" | awk '{print $1}')"
-
                 echo "<|> $filename <|> $sha512sum_value <|>" >> "$SRC_CMP_CHKSUM"
-
             done < "$OUTPUT_FILE"
         else
             echo "Operation cancelled by user"
@@ -56,10 +49,8 @@ function build_archive() {
 
 function verify_archive() {
     truncate -s 0 "$ERR_DMP_FILE"
-
     while IFS='|' read -r filename expected_hash; do
         filepath="$SRC_CMP_DIR/$filename"
-
         if [[ ! -f "$filepath" ]]; then
             printf "FILE: %s\nEXPECTED: %s\nACTUAL: MISSING\n\n" "$filename" "$expected_hash" >> "$ERR_DMP_FILE"
             ((MISS++))
@@ -67,7 +58,6 @@ function verify_archive() {
         fi
 
         actual_hash=$(sha512sum "$filepath" | awk '{print $1}')
-
         if [[ "$actual_hash" == "$expected_hash" ]]; then
             ((PASS++))
         else
@@ -75,31 +65,21 @@ function verify_archive() {
             ((FAIL++))
         fi
     done < <(sed -n -E 's/^<\|>[[:space:]]*([^[:space:]][^|]*[^[:space:]])[[:space:]]*<\|>[[:space:]]*([0-9a-fA-F]{128})[[:space:]]*<\|>$/\1|\2/p' "$SRC_CMP_CHKSUM")
-
     SIZE=$(du -sh "$SRC_CMP_DIR" | awk '{print $1}')
 }
 
 function update_archive() {
     download_links
-
     latest_local=$(find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" | grep -oE 'Python-[0-9]+\.[0-9]+(\.[0-9]+)?' | sed 's/Python-//' | sort -V | tail -n 1)
-
     [[ -z "$latest_local" ]] && latest_local="0.0.0"
-
     updated_files=0
-
     while IFS= read -r url; do
         [[ -z "$url" ]] && continue
-
         filename="$(basename "$url")"
         filepath="$SRC_CMP_DIR/$filename"
-
         [[ -f "$filepath" ]] && continue
-
         file_version=$(echo "$filename" | grep -oE 'Python-[0-9]+\.[0-9]+(\.[0-9]+)?' | sed 's/Python-//')
-
         older_ver=$(printf '%s\n%s' "$latest_local" "$file_version" | sort -V | head -n 1)
-
         if [[ "$older_ver" == "$file_version" && "$file_version" != "$latest_local" ]]; then
             echo "Skipping $filename (Version $file_version is older than latest local $latest_local) - nothing has been updated."
             continue
@@ -107,29 +87,24 @@ function update_archive() {
 
         echo "Downloading missing/new archive: $filename..."
         wget -v -O "$filepath" "$url"
-
         if [[ ! -f "$filepath" ]]; then
             echo "Error: Failed to download $url" >&2
             continue
         fi
 
         sha512sum_value="$(sha512sum "$filepath" | awk '{print $1}')"
-
         {
             echo "DATE: $(date "+%Y-%m-%d %H:%M:%S")"
             echo "FILE_NAME: $filename"
             echo "SHA512HASH: $sha512sum_value"
             echo ""
         } >> "$SRC_UPDT_LOG"
-
         ((updated_files++))
-
     done < "$OUTPUT_FILE"
 
     if [[ $updated_files -gt 0 ]]; then
         echo "Updates found. Rebuilding the entire checksum file..."
         truncate -s 0 "$SRC_CMP_CHKSUM"
-
         find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" -exec basename {} \; | \
             sort -V | \
             while read -r arch; do
@@ -137,7 +112,6 @@ function update_archive() {
                 h_val=$(sha512sum "$fpath" | awk '{print $1}')
                 echo "<|> $arch <|> $h_val <|>" >> "$SRC_CMP_CHKSUM"
             done
-
         echo "Update complete: Successfully downloaded $updated_files new file(s) and rebuilt checksums."
     else
         echo "Check complete: No new updates were found or downloaded."
@@ -145,30 +119,25 @@ function update_archive() {
 }
 
 function download_specific() {
-
     url=$(grep "/Python-$1\.\(tar\.xz\|tar\.bz2\|tgz\|tar\.gz\)$" "$OUTPUT_FILE")
-
     [[ -z "$url" ]] && {
         echo "Version $1 not found"
         return
     }
-
+    
     filename=$(basename "$url")
-
     [[ -f "$SRC_CMP_DIR/$filename" ]] && {
         echo "$1 version already exists"
         return
     }
-
+    
     wget -v -O "$SRC_CMP_DIR/$filename" "$url"
-
     [[ ! -f "$SRC_CMP_DIR/$filename" ]] && {
         echo "Failed to download $filename"
         return
     }
-
+    
     truncate -s 0 "$SRC_CMP_CHKSUM"
-
     find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" -exec basename {} \; |
         sort -V |
         while read -r arch; do
@@ -189,21 +158,18 @@ function download_x_latest() {
     }
 
     filename=$(basename "$url")
-
     [[ -f "$SRC_CMP_DIR/$filename" ]] && {
         echo "$filename already exists"
         return
     }
 
     wget -v -O "$SRC_CMP_DIR/$filename" "$url"
-
     [[ ! -f "$SRC_CMP_DIR/$filename" ]] && {
         echo "Failed to download $filename"
         return
     }
 
     truncate -s 0 "$SRC_CMP_CHKSUM"
-
     find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" -exec basename {} \; |
         sort -V |
         while read -r arch; do
@@ -213,7 +179,6 @@ function download_x_latest() {
 
 function regen_checksum() {
     truncate -s 0 "$SRC_CMP_CHKSUM"
-
     find "$SRC_CMP_DIR" -maxdepth 1 -type f -name "Python-*" -exec basename {} \; |
         sort -V |
         while read -r arch; do
