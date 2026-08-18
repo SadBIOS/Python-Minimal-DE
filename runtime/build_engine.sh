@@ -134,7 +134,7 @@ function pybuild_specific() {
     src_path="${SRC_ALIAS}${version}"
     cd "$src_path" || return 1
     ./configure --prefix="${bin_path}" --enable-optimizations --with-ensurepip=install
-    make -j"$(nproc)"
+    make -j "$(nproc)"
     make install
     cd "$SCRIPT_ROOT"
 }
