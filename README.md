@@ -28,7 +28,7 @@ ___
 ### Operation
 Once the repository is extracted (either via [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or by manually downloading the source code) you must navigate to the ```~/Python-Minimal-DE-main/runtime/``` (assuming that you have placed the contents inside the home directory of the ```$USER```), run the following command to activate the runtime scripts.
 ```bash
-chmod +x *.sh
+chmod +x -v *.sh
 ```
 Run the following command to resolve dependencies that are required to build Python from source and for the general operation of this system.
 ```bash
