@@ -65,6 +65,5 @@ while [[ $# -gt 0 ]]; do
             rm -vrf "$PIP_CACHE"/* 2>/dev/null
             exit 0
         ;;
-
     esac
 done
