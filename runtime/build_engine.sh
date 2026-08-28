@@ -216,6 +216,5 @@ while [[ $# -gt 0 ]]; do
             clean_bins
             exit 0
         ;;
-
     esac
 done
