@@ -122,6 +122,5 @@ while [[ $# -gt 0 ]]; do
             makepkg_cache
             exit 0
         ;;
-
     esac
 done
