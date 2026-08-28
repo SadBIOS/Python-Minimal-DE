@@ -290,6 +290,5 @@ while [[ $# -gt 0 ]]; do
             update_archive
             exit 0
         ;;
-        
     esac
 done
