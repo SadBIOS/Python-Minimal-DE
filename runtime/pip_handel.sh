@@ -101,6 +101,5 @@ while [[ $# -gt 0 ]]; do
             shift
             exit 0
         ;;
-
     esac
 done
