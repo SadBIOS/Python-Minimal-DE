@@ -26,6 +26,7 @@ DEPS=(
     tk-dev
     libffi-dev
     uuid-dev
+    screen
 )
 
 function conn_stat() {
