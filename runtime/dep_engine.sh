@@ -10,6 +10,9 @@ sudo -v || {
 }
 
 SCRIPT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+RUNTIME="$SCRIPT_ROOT/pack_proc.sh"
+PKGLIST="$SCRIPT_ROOT/pkglist.txt"
+PKG_ARCH="$SCRIPT_ROOT/ard_cli_dependencies.tar.gz"
 
 DEPS=(
     build-essential
@@ -26,8 +29,8 @@ DEPS=(
     tk-dev
     libffi-dev
     uuid-dev
-    screen
 )
+
 
 function conn_stat() {
     ping -c 1 -W 2 1.1.1.1 &>/dev/null || ping -c 1 -W 2 8.8.8.8 &>/dev/null
@@ -35,7 +38,7 @@ function conn_stat() {
 
 function online() {
     if ! conn_stat; then
-        echo "Cannot resolve dependencies on an offline machine" >&2
+        echo -e "\033[31mCannot resolve dependencies on an offline machine\033[0m" >&2
         exit 1
     fi
 
@@ -44,66 +47,35 @@ function online() {
 
 function makepkg_cache() {
     if conn_stat; then
-        read -rp "Machine is online. Force build offline dependency archive? (y/n): " choice
-        case "$choice" in
-            [yY][eE][sS]|[yY])
-                sudo apt clean
-                sudo apt update
-                cache_dir="$SCRIPT_ROOT/py_build_download_cache/partial"
-                target_dir="$SCRIPT_ROOT/py_build_dependencies"
-                mkdir -p "$cache_dir" "$target_dir"
-                touch "$SCRIPT_ROOT/py_build_download_cache/empty-status"
-                sudo apt-get -o Dir::State::status="$SCRIPT_ROOT/py_build_download_cache/empty-status" -o Dir::Cache::archives="$SCRIPT_ROOT/py_build_download_cache" --download-only install -y "${DEPS[@]}"
-                sudo cp -v $SCRIPT_ROOT/py_build_download_cache/*.deb "$target_dir/"
-                sudo chown -Rv "$USER:$USER" "$target_dir"
-                cd "$SCRIPT_ROOT"
-                tar -czvf py_build_dependencies.tar.gz py_build_dependencies
-                sudo rm -vrf "$SCRIPT_ROOT/py_build_dependencies"
-                sudo rm -vrf "$SCRIPT_ROOT/py_build_download_cache"
-                echo "Offline archive successfully created at: $SCRIPT_ROOT/py_build_dependencies.tar.gz"
-                exit 0
-            ;;
-            
-        esac
-    else
-        echo "Machine is offline. Cannot build dependency archive" >&2
-        exit 1
-    fi
+        if [[ -f "$PKGLIST" || -f "$PKG_ARCH" ]]; then
+            rm -vrf "$PKGLIST"
+            rm -vrf "$PKG_ARCH"
+        fi
 
+        printf '%s\n' "${DEPS[@]}" > "$PKGLIST"
+
+        "$RUNTIME" --gen-pkglist "$PKGLIST"
+        
+        if [[ -f "$PKGLIST" ]]; then
+            rm -vrf "$PKGLIST"
+        fi
+
+        find $SCRIPT_ROOT -maxdepth 1 -type f -name 'depsys-custpkg-*.tar.gz' -exec mv -v {} "$PKG_ARCH" \;
+    fi
 }
 
 function offline() {
-    archive="${1:-$SCRIPT_ROOT/py_build_dependencies.tar.gz}"
-    if [[ ! -f "$archive" ]]; then
-        echo "Archive '$archive' does not exist" >&2
-        read -p "Build archive now? (y/n): " optn
-        case "$optn" in
-            y|Y|yes|YES)
-                makepkg_cache
-                exit 0
-            ;;
-            
-            n|N|no|NO)
-                exit 0
-            ;;
-        
-        esac
+    if [[ ! -f "$PKG_ARCH" ]]; then
+        if ! conn_stat; then
+            echo -e "\033[31mNo Dependency archive was found\033[0m" >&2
+            echo -e "\033[31mAdditionally the machine is offline thus dependency archive creation is not possible\033[0m" >&2
+            exit 1
+        else
+            makepkg_cache
+        fi
+    else
+        "$RUNTIME" --dgst-pkglist "$PKG_ARCH"
     fi
-
-    tar -xzvf "$archive" -C "$SCRIPT_ROOT"
-    dirpath="$SCRIPT_ROOT/py_build_dependencies"
-    if [[ -f /etc/apt/sources.list || -d /etc/apt/sources.list.d ]]; then
-        [[ -f /etc/apt/sources.list ]] && sudo mv -v /etc/apt/sources.list /etc/apt/sources.list.bak
-        [[ -d /etc/apt/sources.list.d ]] && sudo mv -v /etc/apt/sources.list.d /etc/apt/sources.list.d.bak
-        trap '
-            echo "Restoring APT mirrors..."
-            [[ -f /etc/apt/sources.list.bak ]] && sudo mv -v /etc/apt/sources.list.bak /etc/apt/sources.list
-            [[ -d /etc/apt/sources.list.d.bak ]] && sudo mv -v /etc/apt/sources.list.d.bak /etc/apt/sources.list.d
-        ' EXIT
-    fi
-    
-    sudo apt install -y "$dirpath"/*.deb
-    rm -vrf "$SCRIPT_ROOT/py_build_dependencies"
 }
 
 while [[ $# -gt 0 ]]; do
@@ -114,8 +86,7 @@ while [[ $# -gt 0 ]]; do
         ;;
 
         --resolve-offline)
-            offline "$2"
-            shift 2
+            offline
             exit 0
         ;;
 
