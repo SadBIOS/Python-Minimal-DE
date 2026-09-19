@@ -157,6 +157,8 @@ function builder() {
         tk-dev
         libffi-dev
         uuid-dev
+        screen
+        rsync
     )
     
     missing=()
