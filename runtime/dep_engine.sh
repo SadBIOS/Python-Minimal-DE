@@ -29,6 +29,8 @@ DEPS=(
     tk-dev
     libffi-dev
     uuid-dev
+    screen
+    rsync
 )
 
 
