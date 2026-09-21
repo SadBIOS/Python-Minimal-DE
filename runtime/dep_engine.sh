@@ -12,7 +12,7 @@ sudo -v || {
 SCRIPT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 RUNTIME="$SCRIPT_ROOT/pack_proc.sh"
 PKGLIST="$SCRIPT_ROOT/pkglist.txt"
-PKG_ARCH="$SCRIPT_ROOT/ard_cli_dependencies.tar.gz"
+PKG_ARCH="$SCRIPT_ROOT/py_build_dependencies.tar.gz"
 
 DEPS=(
     build-essential
