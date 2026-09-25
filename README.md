@@ -1,7 +1,7 @@
-## Python Minimal DE (Development Environment) for Linux
+## Python Minimal Dev Env for Debian<sup>®</sup> Linux
 This project is mainly designed to add offline operation capabilities to Python development environments.
 
-Intended to be deployed on **Debian** systems. 
+Intended to be deployed on **Debian<sup>®</sup>** systems. 
 <br>
 
 ### Addressing Problems and Goals
@@ -178,12 +178,12 @@ ___
 
 > [!IMPORTANT]  
 > Tested and built on the following OS builds
-> * Debian 13.5 *"Trixie"*, Kernel **6.12.94+deb13-amd64**
-> * Debian 13.5 *"Trixie"*, Kernel **6.12.95+deb13-amd64**
-> * Debian 13.6 *"Trixie"*, Kernel **6.12.96+deb13-amd64**
-> * Debian 13.6 *"Trixie"*, Kernel **6.12.100+deb13-amd64**
+> * Debian<sup>®</sup> 13.5 *"Trixie"*, Kernel **6.12.94+deb13-amd64**
+> * Debian<sup>®</sup> 13.5 *"Trixie"*, Kernel **6.12.95+deb13-amd64**
+> * Debian<sup>®</sup> 13.6 *"Trixie"*, Kernel **6.12.96+deb13-amd64**
+> * Debian<sup>®</sup> 13.6 *"Trixie"*, Kernel **6.12.100+deb13-amd64**
 > * LMDE 7 *"Gigi"*, Kernel **6.12.96+deb13-amd64** (based on Debian 13.0)
 > * LMDE 7 *"Gigi"*, Kernel **6.12.100+deb13-amd64** (based on Debian 13.0)
 >
 > ---
-> Future editions will streamline multi-version installation and package management procedures, which will be added **Soon<sup>TM</sup>**
+> Future editions will streamline multi-version installation and package management procedures, which will be added **Soon™**
