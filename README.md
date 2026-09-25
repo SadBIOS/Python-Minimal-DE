@@ -15,7 +15,7 @@ The primary goal of this system is not to replace any existing tools. Instead, i
 
 <div align="center">
 
-***Reduction of Cloud Dependent Services***
+***Reduction of Cloud Dependent Services.***
 
 </div>
 
