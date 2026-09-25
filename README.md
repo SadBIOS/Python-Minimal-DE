@@ -1,4 +1,4 @@
-## Python Minimal Dev Env for Debian<sup>®</sup> Linux
+## Python<sup>®</sup> Minimal Dev Env for Debian<sup>®</sup> Linux
 This project is mainly designed to add offline operation capabilities to Python development environments.
 
 Intended to be deployed on **Debian<sup>®</sup>** systems. 
