@@ -182,6 +182,7 @@ ___
 > * Debian<sup>®</sup> 13.5 *"Trixie"*, Kernel **6.12.95+deb13-amd64**
 > * Debian<sup>®</sup> 13.6 *"Trixie"*, Kernel **6.12.96+deb13-amd64**
 > * Debian<sup>®</sup> 13.6 *"Trixie"*, Kernel **6.12.100+deb13-amd64**
+> * Debian<sup>®</sup> 13.7 *"Trixie"*, Kernel **6.12.111+deb13-amd64**
 > * LMDE 7 *"Gigi"*, Kernel **6.12.96+deb13-amd64** (based on Debian<sup>®</sup> 13.0)
 > * LMDE 7 *"Gigi"*, Kernel **6.12.100+deb13-amd64** (based on Debian<sup>®</sup> 13.0)
 >
