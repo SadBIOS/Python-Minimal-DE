@@ -160,7 +160,7 @@ function builder() {
         screen
         rsync
         curl
-        gunzip
+        gzip
     )
     
     missing=()
