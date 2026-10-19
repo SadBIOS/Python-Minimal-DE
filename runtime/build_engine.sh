@@ -19,7 +19,7 @@ touch "$BIN_PATHS"
 
 function extractor() {
     py_branch="$1"
-    mkdir -p "$BUILD_DIR"
+    mkdir -pv "$BUILD_DIR"
     archive=$(
         find "$SRC_CMP_DIR" -maxdepth 1 -type f -regextype posix-extended -regex ".*/Python-${py_branch}\.[0-9]+(\.tar\.xz|\.tar\.bz2|\.tar\.gz|\.tgz)$" | sort -V | tail -n1
     )
