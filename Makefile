@@ -8,7 +8,7 @@ script_name := main.py
 
 python_version := 3.12
 python_patch_level := 10
-python_vers_multi := 3.11 3.12 3.13 3.14
+python_vers_multi := 3.11 3.12 3.13 3.14 3.15
 
 ifeq ($(strip $(python_patch_level)),)
 python_dot := $(python_version)
