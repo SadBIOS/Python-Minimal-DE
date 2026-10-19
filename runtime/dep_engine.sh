@@ -31,6 +31,7 @@ DEPS=(
     uuid-dev
     screen
     rsync
+    curl
 )
 
 
