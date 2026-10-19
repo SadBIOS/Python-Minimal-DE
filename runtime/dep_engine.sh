@@ -32,7 +32,7 @@ DEPS=(
     screen
     rsync
     curl
-    gunzip
+    gzip
 )
 
 
