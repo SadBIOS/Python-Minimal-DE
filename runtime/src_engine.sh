@@ -21,7 +21,11 @@ mkdir -pv "$SCRIPT_ROOT/data/src_root/archives"
 touch "$HTML_SOURCE" "$OUTPUT_FILE" "$SRC_CMP_CHKSUM" "$ERR_DMP_FILE" "$SRC_UPDT_LOG"
 
 function download_links() {
-    wget -v -O "$HTML_SOURCE" https://www.python.org/downloads/source/
+    curl -sL https://www.python.org/downloads/source/ -o "$HTML_SOURCE"
+    if file "$HTML_SOURCE" | grep -q "gzip compressed"; then
+        mv "$HTML_SOURCE" "${HTML_SOURCE}.gz"
+        gunzip --verbose "${HTML_SOURCE}.gz"
+    fi
     grep -oE "(https?://www\.python\.org)?/ftp/python/[^\"'\s>]+/Python-[^\"'\s>]+" "$HTML_SOURCE" | grep -vE '[0-9](a|b|rc)[0-9]' | sed -E 's|^(https?://www\.python\.org)?|https://www.python.org|' | awk -F'/' '{score=0; if($0~/\.tar\.xz$/)score=3; else if($0~/\.tar\.bz2$/)score=2; else if($0~/\.tgz$/||$0~/\.tar\.gz$/)score=1; if(!($6 in b) || score>b[$6]){b[$6]=score; u[$6]=$0}} END{for(v in u) print u[v]}' | sort -V > "$OUTPUT_FILE"
 }
 
