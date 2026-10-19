@@ -159,6 +159,7 @@ function builder() {
         uuid-dev
         screen
         rsync
+        curl
     )
     
     missing=()
