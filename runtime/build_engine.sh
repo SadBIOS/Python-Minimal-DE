@@ -55,7 +55,7 @@ function extractor() {
 
 function extract_exact() {
     py_version="$1"
-    mkdir -p "$BUILD_DIR"
+    mkdir -pv "$BUILD_DIR"
     archive=""
     for ext in tar.xz tar.bz2 tar.gz tgz; do
         if [[ -f "$SRC_CMP_DIR/Python-${py_version}.${ext}" ]]; then
