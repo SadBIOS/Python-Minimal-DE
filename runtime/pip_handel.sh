@@ -34,7 +34,7 @@ function req_processor() {
         fi
 
         dest_dir="${pkg_root}/${pkg}/${dest_ver}"
-        mkdir -p "$dest_dir"
+        mkdir -pv "$dest_dir"
         $pip_cmd --disable-pip-version-check --no-cache-dir download "$line" --dest "$dest_dir"
     done < "$pkg_list"
 }
